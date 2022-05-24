@@ -17,6 +17,15 @@ end
 
   end
 
+   def destroy
+    room = Room.find(params[:id])
+    # 削除するルームを指定
+    room.destroy
+    # ルームを削除
+    redirect_to root_path
+    # トップページに戻る
+  end
+
     private
 
   def room_params
