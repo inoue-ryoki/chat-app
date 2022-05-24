@@ -1,8 +1,9 @@
 class MessagesController < ApplicationController
   def index
 
-    @message= Message.new
+    @message = Message.new
      @room = Room.find(params[:room_id])
+     @messages = @room.messages.includes(:user)
 
   end
 
@@ -17,6 +18,7 @@ class MessagesController < ApplicationController
     # メッセージが保存できたら保存後の情報に更新され、メッセージ画面にもどる
       redirect_to room_messages_path(@room)
     else
+      @messages = @room.messages.includes(:user)
       render :index
     end
 
